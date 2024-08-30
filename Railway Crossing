@@ -1,7 +1,7 @@
 #include <Servo.h>
 const int led=3;
 const int led1=6;
-Servo arhat;
+Servo servo;
 Servo pt2;
 void setup() {
 arhat.attach(5);
@@ -13,10 +13,10 @@ void loop() {
   digitalWrite(led,LOW);
   digitalWrite(led1,HIGH);
   pt2.write(180);
-  arhat.write(0);
+  servo.write(0);
   delay(1000);
   pt2.write(90);
-  arhat.write(90);
+  servo.write(90);
   digitalWrite(led,HIGH);
   digitalWrite(led1,LOW);
   delay(1000);
