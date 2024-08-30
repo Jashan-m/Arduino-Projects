@@ -1,0 +1,13 @@
+const int irSensor1Pin = 2;  
+void setup() {
+  Serial.begin(9600);
+  pinMode(irSensor1Pin, INPUT);
+}
+
+void loop() {
+  int sensor1State = digitalRead(irSensor1Pin);    
+  Serial.print("Value : ");
+  Serial .print("\n");
+  Serial.print(sensor1State);
+  delay(500);
+}
