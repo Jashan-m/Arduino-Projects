@@ -1,0 +1,57 @@
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+// Set the LCD address to 0x27 or 0x3F for a 16 chars and 2 line display
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+// Define the RGB LED pins
+const int redPin = 9;
+const int greenPin = 10;
+const int bluePin = 11;
+
+// Time duration in seconds
+const int redTime = 10;
+const int greenTime = 7;
+const int yellowTime = 3;
+
+void setup() {
+  // Initialize the LCD
+  lcd.init();
+  lcd.backlight();
+
+  // Initialize the RGB LED pins
+  pinMode(redPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+  pinMode(bluePin, OUTPUT);
+}
+
+void loop() {
+  // Red light
+  setColor(255, 0, 0); // Red
+  countdown(redTime);
+
+  // Green light
+  setColor(0, 255, 0); // Green
+  countdown(greenTime);
+
+  // Yellow light
+  setColor(255, 255, 0); // Yellow (Red + Green)
+  countdown(yellowTime);
+}
+
+void setColor(int red, int green, int blue) {
+  analogWrite(redPin, red);
+  analogWrite(greenPin, green);
+  analogWrite(bluePin, blue);
+}
+
+void countdown(int seconds) {
+  for (int i = seconds; i > 0; i--) {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Time Left: ");
+    lcd.print(i);
+    lcd.print(" sec");
+    delay(1000);
+  }
+}
